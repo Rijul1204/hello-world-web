@@ -1,38 +1,66 @@
-# hello-world-web
+# Hello World Web
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project is the web companion for the [HelloWorldAndroid POC](https://github.com/Rijul1204/hello-world-android), demonstrating seamless integration between an Android app and a web application using **Android App Links** and **Custom Tabs**.
 
-## Getting Started
+## 🚀 Purpose
 
-First, run the development server:
+The main goal is to enable smooth, secure, and user-friendly data exchange between a native Android app and a web app using:
+- **App Links & Deep Linking:**  
+  The Android app can open this web app with user data and a custom return URL. The web app processes input and returns results back to the app via a deep link.
+- **Custom Tabs Integration:**  
+  The Android app launches the web app in a Chrome Custom Tab, providing a native-like experience while maintaining security and user context.
+
+## 🔗 How the Flow Works
+
+1. **User enters a username** in the Android app.
+2. The app opens the web app in a Custom Tab, passing the username and a return URL (custom scheme: `helloworld://result`).
+3. The web app processes the username and, when done, redirects back to the Android app using the custom scheme with result data as query params.
+4. The Android app receives the result via deep link and displays it.
+
+> **Android Project:**  
+> See the full Android implementation here: [hello-world-android](https://github.com/Rijul1204/hello-world-android)
+
+## 🧩 Key Web App Features
+
+- **Deep Link Handling:**  
+  Receives `username` and `returnApp` parameters from the Android app.
+- **User Input:**  
+  Lets the user enter a message or data to send back to the app.
+- **Return via App Link:**  
+  Redirects to the custom scheme (e.g., `helloworld://result?username=...&result=...`) to deliver results to the Android app.
+- **Demo & Test Pages:**  
+  Includes `/demo` and `/process` routes for testing the integration and simulating the full flow.
+
+## 🌐 Example URLs
+
+- **Open from Android app:**  
+  ```
+  https://hello-world-web-ivory.vercel.app/?username=john&returnApp=helloworld://result
+  ```
+- **Return to Android app:**  
+  ```
+  helloworld://result?username=john&result=Hello%20from%20web
+  ```
+
+## 🛠️ Tech Stack
+
+- [Next.js](https://nextjs.org/) (React 19)
+- [Tailwind CSS](https://tailwindcss.com/)
+- TypeScript
+
+## 🏗️ Getting Started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/Rijul1204/hello-world-web.git
+cd hello-world-web
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📱 Android Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+For details on the Android side, see the [hello-world-android README](https://github.com/Rijul1204/hello-world-android#readme).
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
